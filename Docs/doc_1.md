@@ -44,7 +44,7 @@ typedef struct {
 * `push()` : Inserts an opening bracket into the stack
 * `pop()` : Removes and returns the top element from the stack
 * `isMatching()` : Checks whether opening and closing brackets match
- `isBalanced()` : Determines whether the expression is balanced
+* `isBalanced()` : Determines whether the expression is balanced
 
 ---
 
