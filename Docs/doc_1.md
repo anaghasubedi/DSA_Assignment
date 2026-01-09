@@ -1,16 +1,3 @@
-Perfect 👍
-Below is a **one-page, university lab-manual–aligned documentation** (formal, concise, and evaluator-friendly).
-This is **not** the multi-file offer—just a refined version of **doc_q1.md**.
-
-Save exactly as:
-
-```
-doc_q1.md
-```
-
----
-
-# Experiment 1
 
 ## Checking Balanced Parentheses Using Stack
 
@@ -45,25 +32,23 @@ typedef struct {
 
 **Description:**
 
-* `data[MAX]` → Array used to store opening brackets.
-* `top` → Indicates the index of the topmost element.
-* `typedef` is used to simplify stack usage throughout the program.
+* `data[MAX]` : Array used to store opening brackets.
+* `top` : Indicates the index of the topmost element.
+* `typedef` : is used to simplify stack usage throughout the program.
 
 ---
 
 ### Description of Functions
 
-| Function Name  | Purpose                                            |
-| -------------- | -------------------------------------------------- |
-| `initStack()`  | Initializes the stack by setting `top = -1`        |
-| `push()`       | Inserts an opening bracket into the stack          |
-| `pop()`        | Removes and returns the top element from the stack |
-| `isMatching()` | Checks whether opening and closing brackets match  |
-| `isBalanced()` | Determines whether the expression is balanced      |
+* `initStack()` : Initializes the stack by setting `top = -1`
+* `push()` : Inserts an opening bracket into the stack
+* `pop()` : Removes and returns the top element from the stack
+* `isMatching()` : Checks whether opening and closing brackets match
+ `isBalanced()` : Determines whether the expression is balanced
 
 ---
 
-### Algorithm (Brief)
+### Algorithm 
 
 1. Initialize the stack.
 2. Scan the expression character by character.
