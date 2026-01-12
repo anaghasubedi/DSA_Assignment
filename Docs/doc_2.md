@@ -41,7 +41,7 @@ typedef struct {
 } CharStack;
 
 typedef struct {
-    long long data[MAX];
+    int data[MAX];
     int top;
 } IntStack;
 ```
@@ -136,6 +136,6 @@ This program demonstrates the **power of stacks** for expression processing. By 
 * **operand stack** for evaluation, and
 * **right-associative handling for `^`**,
 
-the program ensures **accurate expression evaluation**. The implementation is robust and can handle **large integer results safely** using `long long`.
+the program ensures **accurate expression evaluation**. The implementation is robust and can handle **large integer results safely** using `int`.
 
 ---
