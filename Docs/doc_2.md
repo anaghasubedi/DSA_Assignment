@@ -1,9 +1,3 @@
-Perfect! Based on the **final corrected program** that supports `+ - * / ^` with **right-associative exponentiation**, parentheses, and integer overflow-safe evaluation, here’s a **full Markdown documentation** (`doc_2.md`) in the same style as your Balanced Parentheses example.
-
-You can save it as **`doc_2.md`**.
-
----
-
 ## Infix to Postfix Conversion and Evaluation Using Stack
 
 ---
