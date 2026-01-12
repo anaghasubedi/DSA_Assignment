@@ -77,13 +77,13 @@ The `main()` function:
 ### Sample Output
 
 **A:**
-![Stack representation](images/StackInput1.png)
+![Stack representation](images/prog1_1.png)
 
 **B:**
-![Stack representation](images/StackInput2.png)
+![Stack representation](images/prog1_2.png)
 
 **C:**
-![Stack representation](images/StackInput3.png)
+![Stack representation](images/prog1_3.png)
 
 ---
 
@@ -95,6 +95,6 @@ The program successfully checks whether a given mathematical expression has bala
 
 ### Conclusion
 
-This experiment demonstrates the practical application of the **stack data structure** for solving real-world problems. The program effectively uses structures, typedef, and stack operations to ensure correctness and clarity.
+This program demonstrates the practical application of the **stack data structure** for solving real-world problems. The program effectively uses structures, typedef, and stack operations to ensure correctness and clarity.
 
 ---
