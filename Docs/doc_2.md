@@ -1,9 +1,3 @@
-Perfect! Based on the **final corrected program** that supports `+ - * / ^` with **right-associative exponentiation**, parentheses, and integer overflow-safe evaluation, here’s a **full Markdown documentation** (`doc_2.md`) in the same style as your Balanced Parentheses example.
-
-You can save it as **`doc_2.md`**.
-
----
-
 ## Infix to Postfix Conversion and Evaluation Using Stack
 
 ---
@@ -47,7 +41,7 @@ typedef struct {
 } CharStack;
 
 typedef struct {
-    long long data[MAX];
+    int data[MAX];
     int top;
 } IntStack;
 ```
@@ -142,6 +136,6 @@ This program demonstrates the **power of stacks** for expression processing. By 
 * **operand stack** for evaluation, and
 * **right-associative handling for `^`**,
 
-the program ensures **accurate expression evaluation**. The implementation is robust and can handle **large integer results safely** using `long long`.
+the program ensures **accurate expression evaluation**. The implementation is robust and can handle **large integer results safely** using `int`.
 
 ---
