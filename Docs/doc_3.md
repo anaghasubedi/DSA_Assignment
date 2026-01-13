@@ -77,7 +77,7 @@ The `main()` function:
 
 ### Sample Output
 
-![Stack representation](images/prog3_1.png)
+![Traversal](images/prog3_1.png)
 
 ---
 
@@ -96,3 +96,4 @@ This program demonstrates the **power of recursion** for linked list operations.
 * The approach is **simple and elegant** for singly linked lists.
 
 ```
+
