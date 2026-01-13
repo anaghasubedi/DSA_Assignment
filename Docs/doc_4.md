@@ -76,7 +76,7 @@ typedef struct Node {
 
 ### Sample Output
 
-![Stack representation](images/prog4_1.png)
+![linked list](images/prog4_1.png)
 
 ---
 
