@@ -115,10 +115,10 @@ The `main()` function:
 ### Sample Output
 
 **A:**
-![Stack representation](images/prog2_1.png)
+![Infix to postfix](images/prog2_1.png)
 
 **B:**
-![Stack representation](images/prog2_2.png)
+![Infix to postfix](images/prog2_2.png)
 
 ---
 
