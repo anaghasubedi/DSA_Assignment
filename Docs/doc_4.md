@@ -1,14 +1,12 @@
-# Implementation of Doubly Linked List Using typedef Structure
+# Implementation of Doubly Linked List using Structure
 
 ---
 
 ### Aim
 
-To implement a **doubly linked list** using `typedef` structure in C and to write functions to:
+To implement a **doubly linked list** using structure in C and to write functions.
 
-1. Insert a node after a given node
-2. Delete a specified node
-   The program demonstrates all operations using function calls.
+The program demonstrates all operations using function calls.
 
 ---
 

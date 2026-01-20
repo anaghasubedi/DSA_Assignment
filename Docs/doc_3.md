@@ -4,7 +4,7 @@
 
 ### Aim
 
-To write a program that **traverses a singly linked list in reverse order** using **recursion**, without modifying the original list.
+To write a program that **traverses a singly linked list in reverse order**
 
 ---
 

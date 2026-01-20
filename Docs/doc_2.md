@@ -4,7 +4,7 @@
 
 ### Aim
 
-To write a program that **converts an infix mathematical expression into postfix form** and **evaluates the postfix expression** using the **stack data structure**, supporting all basic arithmetic operations including **exponentiation (`^`)**.
+To write a program that **converts an infix mathematical expression into postfix form** and **evaluates the postfix expression** using the **stack data structure**, supporting all basic arithmetic operations.
 
 ---
 
