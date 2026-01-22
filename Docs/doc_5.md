@@ -1,104 +1,93 @@
-# Implementation of the BFS and DFS technique to traverse through the graph.
+# Implementation of BFS and DFS Traversal in C
 
 ---
 
 ### Aim
 
-To implement the **BFS** and **DFS** technique to traverse through graph.
-
-The program demonstrates all operations using **function calls** and **pointer-based dynamic memory allocation**.
+To implement **Breadth-First Search (BFS)** and **Depth-First Search (DFS)** graph traversal techniques in C and demonstrate traversing an undirected graph using an adjacency matrix.
 
 ---
 
 ### Theory
 
-An **undirected graph** is a set of vertices connected by edges where the connections have no direction.
-Graphs can be represented in memory using:
+Graphs are a set of **vertices (nodes)** connected by **edges**. Graph traversal algorithms visit all nodes of a graph systematically.  
 
-* **Adjacency Matrix** – a 2D array where `adj[i][j] = 1` if there is an edge between vertex `i` and `j`.
-* **Adjacency List** – a list of neighbors for each vertex.
+1. **Breadth-First Search (BFS)**  
+   - Traverses the graph level by level.
+   - Uses a **queue** to keep track of vertices to visit.
+   - Visits all neighbors of a vertex before moving to the next level.
 
-This program uses a **pointer-based adjacency matrix**. BFS uses a **queue** to visit nodes level by level, while DFS uses **recursion** to explore as deep as possible before backtracking.
+2. **Depth-First Search (DFS)**  
+   - Traverses the graph by exploring as far as possible along each branch before backtracking.
+   - Uses **recursion** or a **stack**.
+   - Visits a vertex and then recursively visits all its unvisited neighbors.
 
 ---
 
-### Data Structure Definition
+### Data Structure / Array Definition
 
 ```c
-typedef struct {
-    int **adj;  // Pointer to adjacency matrix
-    int n;      // Number of vertices
-} Graph;
-```
+#define MAX 10
+int adj[MAX][MAX];    // Adjacency matrix representing the graph
+int visited[MAX];     // Array to track visited vertices
+int n;                // Number of vertices in the graph
+````
 
-**Description:**
-
-* `Graph` : Represents the undirected graph
-* `adj` : Pointer to a dynamically allocated 2D adjacency matrix
-* `n` : Stores the number of vertices in the graph
-* `typedef` : Simplifies usage of the graph structure in the program
+* `adj[][]` stores the presence of edges between vertices.
+* `visited[]` keeps track of vertices that have been traversed.
+* `n` is the total number of vertices.
 
 ---
 
-### Description of Functions
+### Definition of Program
 
-* `Graph* createGraph(int n)` : Dynamically allocates memory for a graph with `n` vertices and initializes the adjacency matrix.
-* `void freeGraph(Graph* g)` : Frees all dynamically allocated memory for the graph.
-* `void printGraph(Graph* g)` : Displays each vertex and its **connected neighbors**.
-* `void BFS(Graph* g, int start)` : Performs **Breadth-First Search** starting from the specified vertex using a **dynamic queue**.
-* `void DFS(Graph* g, int v)` : Performs **Depth-First Search** starting from the specified vertex using **recursion**.
+The program performs the following operations:
+
+1. Reads the number of vertices `n` and number of edges `edges`.
+2. Accepts the edges of the graph and stores them in an adjacency matrix `adj[][]`.
+3. Prompts for a starting vertex `start`.
+4. Performs **BFS traversal** starting from the given vertex using a queue.
+5. Performs **DFS traversal** starting from the given vertex using recursion.
+6. Prints the order of vertices visited in both BFS and DFS.
+
+Functions used:
+
+* `BFS(int start)`: Implements BFS traversal using a queue.
+* `DFS(int v)`: Implements DFS traversal recursively.
 
 ---
 
 ### Algorithm
 
-#### Graph Creation
+**BFS Algorithm:**
 
-1. Allocate memory for a `Graph` structure using `malloc`.
-2. Set `n` to the number of vertices.
-3. Allocate memory for the adjacency matrix as a 2D dynamic array.
-4. Initialize all matrix elements to `0`.
+1. Initialize all vertices as unvisited.
+2. Enqueue the starting vertex and mark it as visited.
+3. While the queue is not empty:
 
-#### BFS Traversal
+   * Dequeue a vertex `v` and visit it.
+   * Enqueue all unvisited neighbors of `v` and mark them visited.
 
-1. Allocate a dynamic queue of size `n`.
-2. Initialize all vertices as unvisited.
-3. Enqueue the starting vertex and mark it visited.
-4. While the queue is not empty:
-   a. Dequeue a vertex `v`.
-   b. Print `v`.
-   c. Enqueue all unvisited neighbors of `v` and mark them visited.
-5. Free the dynamic queue.
+**DFS Algorithm:**
 
-#### DFS Traversal
-
-1. Mark the current vertex as visited.
-2. Print the vertex.
-3. Recursively visit all unvisited neighbors.
+1. Mark the current vertex as visited and visit it.
+2. For each unvisited neighbor of the current vertex, recursively perform DFS.
 
 ---
 
 ### Sample Output
 
-![BFS and DFS representation](images/prog5_1.png)
-
+![Traversal](images\prog5_1.png)
 ---
 
 ### Result
 
-The program successfully implements an **undirected graph** using a **pointer-based adjacency matrix** with:
-
-* Dynamic memory allocation for graph structure and BFS queue.
-* Graph display showing each vertex and its connected neighbors.
-* BFS traversal showing nodes level by level.
-* DFS traversal showing nodes depth-wise.
+The program successfully traverses the graph using both **BFS** and **DFS** and displays the order in which vertices are visited.
 
 ---
 
 ### Conclusion
 
-This program demonstrates the **flexibility and efficiency of pointer-based graph representation**:
+This program demonstrates **graph traversal techniques** effectively. BFS is useful for finding the shortest path in unweighted graphs, while DFS is helpful for exploring connected components and solving problems such as cycle detection or topological sorting.
 
-* Vertices and edges can be dynamically managed.
-* Traversal algorithms (BFS and DFS) correctly explore the graph.
-* Memory is dynamically allocated and freed, making the program **safe and scalable**.
+---
