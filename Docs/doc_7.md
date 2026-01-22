@@ -1,104 +1,85 @@
-# Implementation of BFS and DFS Traversal of a Graph
+# Implementation of Dijkstra’s Algorithm in C
 
 ---
 
-### Aim
+### **Aim**
 
-To implement the **BFS** and **DFS** technique to traverse through a graph.
-
-The program demonstrates all operations using **function calls** and **pointer-based dynamic memory allocation**.
+To implement **Dijkstra’s algorithm** for a weighted graph to find the **shortest path from a source node to all other nodes**.
 
 ---
 
-### Theory
+### **Theory**
 
-An **undirected graph** is a set of vertices connected by edges where the connections have no direction.
-Graphs can be represented in memory using:
+**Dijkstra’s algorithm** is used to find the shortest paths from a single source vertex to all other vertices in a **weighted graph with non-negative edge weights**.
 
-* **Adjacency Matrix** – a 2D array where `adj[i][j] = 1` if there is an edge between vertex `i` and `j`.
-* **Adjacency List** – a list of neighbors for each vertex.
+**Steps:**
 
-This program uses a **pointer-based adjacency matrix**. BFS uses a **queue** to visit nodes level by level, while DFS uses **recursion** to explore as deep as possible before backtracking.
+1. Initialize distances from the source to all vertices as infinity (`INT_MAX`), except the source itself (distance = 0).
+2. Select the unvisited vertex with the **minimum distance**.
+3. Update the distances of its adjacent vertices (relaxation).
+4. Repeat until all vertices are visited.
+
+**Time Complexity:**
+
+* Using adjacency matrix: **O(V²)**
+* Using priority queue (min-heap): **O((V + E) log V)**
 
 ---
 
-### Data Structure Definition
+### **Data Structure Definition**
 
 ```c
-typedef struct {
-    int **adj;  // Pointer to adjacency matrix
-    int n;      // Number of vertices
-} Graph;
+#define MAX 10
 ```
 
 **Description:**
 
-* `Graph` : Represents the undirected graph
-* `adj` : Pointer to a dynamically allocated 2D adjacency matrix
-* `n` : Stores the number of vertices in the graph
-* `typedef` : Simplifies usage of the graph structure in the program
+* `MAX` : Maximum number of vertices supported in the graph.
+* `graph[MAX][MAX]` : Represents the adjacency matrix of the weighted graph.
+* `dist[MAX]` : Array to store the shortest distance from the source vertex.
+* `visited[MAX]` : Array to keep track of visited vertices during the algorithm.
 
 ---
 
-### Description of Functions
+### **Definition of Functions**
 
-* `Graph* createGraph(int n)` : Dynamically allocates memory for a graph with `n` vertices and initializes the adjacency matrix.
-* `void freeGraph(Graph* g)` : Frees all dynamically allocated memory for the graph.
-* `void printGraph(Graph* g)` : Displays each vertex and its **connected neighbors**.
-* `void BFS(Graph* g, int start)` : Performs **Breadth-First Search** starting from the specified vertex using a **dynamic queue**.
-* `void DFS(Graph* g, int v)` : Performs **Depth-First Search** starting from the specified vertex using **recursion**.
+* `int minDistance(int dist[], int visited[], int n)` : Finds the unvisited vertex with the **minimum distance** from the source.
+* `void dijkstra(int graph[MAX][MAX], int n, int src)` : Implements **Dijkstra’s algorithm** to compute the shortest path from the source vertex to all other vertices.
 
 ---
 
-### Algorithm
+### **Algorithm (Step by Step)**
 
-#### Graph Creation
+1. Start with a graph `G(V, E)` with `V` vertices and `E` edges, and a source vertex `S`.
+2. Create an array `dist[]` of size `V` and initialize all values to `INT_MAX`. Set `dist[S] = 0`.
+3. Create a `visited[]` array to keep track of processed vertices.
+4. Repeat the following until all vertices are visited:
 
-1. Allocate memory for a `Graph` structure using `malloc`.
-2. Set `n` to the number of vertices.
-3. Allocate memory for the adjacency matrix as a 2D dynamic array.
-4. Initialize all matrix elements to `0`.
+   * Find the unvisited vertex `u` with the minimum `dist[u]`.
+   * Mark `u` as visited.
+   * For every adjacent vertex `v` of `u`:
 
-#### BFS Traversal
-
-1. Allocate a dynamic queue of size `n`.
-2. Initialize all vertices as unvisited.
-3. Enqueue the starting vertex and mark it visited.
-4. While the queue is not empty:
-   a. Dequeue a vertex `v`.
-   b. Print `v`.
-   c. Enqueue all unvisited neighbors of `v` and mark them visited.
-5. Free the dynamic queue.
-
-#### DFS Traversal
-
-1. Mark the current vertex as visited.
-2. Print the vertex.
-3. Recursively visit all unvisited neighbors.
+     * If `v` is unvisited and `dist[u] + weight(u,v) < dist[v]`, update `dist[v] = dist[u] + weight(u,v)`.
+5. After all vertices are processed, `dist[]` contains the shortest distances from the source to all vertices.
 
 ---
 
-### Sample Output
+### **Sample Output**
 
-![BFS and DFS representation](images/prog5_1.png)
-
----
-
-### Result
-
-The program successfully implements an **undirected graph** using a **pointer-based adjacency matrix** with:
-
-* Dynamic memory allocation for graph structure and BFS queue.
-* Graph display showing each vertex and its connected neighbors.
-* BFS traversal showing nodes level by level.
-* DFS traversal showing nodes depth-wise.
+![Dijkstra's Algorithm](images/prog7_1.png)
 
 ---
 
-### Conclusion
+### **Notes**
 
-This program demonstrates the **flexibility and efficiency of pointer-based graph representation**:
+* Works only for **non-negative weights**.
+* Uses **adjacency matrix** representation.
+* Can be extended to **priority queue implementation** for better efficiency.
 
-* Vertices and edges can be dynamically managed.
-* Traversal algorithms (BFS and DFS) correctly explore the graph.
-* Memory is dynamically allocated and freed, making the program **safe and scalable**.
+---
+
+### **Conclusion**
+
+Dijkstra’s algorithm efficiently computes the shortest path from a source node to all other nodes in a weighted graph with non-negative edges. It is widely used in network routing, GPS navigation, and other applications requiring optimal path finding. While simple and intuitive, its performance can be improved using data structures like min-heaps or priority queues for larger graphs.
+
+---
