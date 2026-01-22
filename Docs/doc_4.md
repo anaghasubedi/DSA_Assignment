@@ -1,11 +1,13 @@
-# Implementation of Doubly Linked List using Structure
+# Implementation of Doubly Linked List Using `typedef` Structure in C
 
 ---
 
 ### Aim
 
-To implement a **doubly linked list** using structure in C and to write functions.
+To implement a **doubly linked list** in C using `typedef` structure and to write functions to:
 
+1. Insert a node **after a given node**.
+2. Delete a specified node.  
 The program demonstrates all operations using function calls.
 
 ---
@@ -14,15 +16,21 @@ The program demonstrates all operations using function calls.
 
 A **doubly linked list** is a dynamic data structure consisting of nodes where each node contains:
 
-* `data` – stores the value of the node
-* `prev` – pointer to the previous node in the list
-* `next` – pointer to the next node in the list
+- **Data**: The actual value stored in the node.
+- **Prev Pointer**: Points to the previous node in the list.
+- **Next Pointer**: Points to the next node in the list.
 
-This structure allows traversal in both **forward and backward directions**, and supports operations such as insertion and deletion at any position.
+Unlike a singly linked list, a doubly linked list allows **traversal in both directions**.  
+
+Operations:
+
+- **Insertion after a node**: Adds a new node after a specified node.
+- **Deletion of a node**: Removes a specified node and updates pointers of adjacent nodes.
+- **Traversal**: Iterates through the list to display all node values.
 
 ---
 
-### Data Structure Definition
+### Data Structure / Node Definition
 
 ```c
 typedef struct Node {
@@ -30,64 +38,71 @@ typedef struct Node {
     struct Node* prev;
     struct Node* next;
 } Node;
-```
+````
 
-**Description:**
-
-* `Node` : Represents a single element of the doubly linked list
-* `data` : Stores the integer value of the node
-* `prev` : Pointer to the previous node in the list
-* `next` : Pointer to the next node in the list
-* `typedef` : Simplifies usage of the node structure in the program
+* `data`: Stores the value of the node.
+* `prev`: Pointer to the previous node.
+* `next`: Pointer to the next node.
 
 ---
 
-### Description of Functions
+### Definition of Program
 
-* `createNode(int value)` : Creates a new node with the given value and returns a pointer to it.
-* `insertAfter(Node* prevNode, int value)` : Inserts a node **after a given node** in the list.
-* `deleteNode(Node** head, Node* delNode)` : Deletes a specific node from the list.
-* `printList(Node* head)` : Displays the linked list in **forward order**.
+The program performs the following operations:
+
+1. Creates a doubly linked list with three nodes containing values 10, 20, and 30.
+2. Displays the original list.
+3. Inserts new nodes after specified nodes and displays the updated list.
+4. Deletes specified nodes and displays the updated list after each deletion.
+
+Functions used:
+
+* `createNode(int data)`: Creates a new node with the given data.
+* `insertAfter(Node* prevNode, int data)`: Inserts a node after a given node.
+* `deleteNode(Node** head, Node* delNode)`: Deletes a specified node from the list.
+* `printList(Node* node)`: Traverses and prints the list from head to tail.
 
 ---
 
 ### Algorithm
 
-#### Insertion After a Given Node
+**Insertion After a Node:**
 
-1. Check if the given node is `NULL`. If yes, return.
-2. Create a new node with the given value.
-3. Set the new node's `next` to the given node's `next`.
-4. Set the new node's `prev` to the given node.
-5. Update the `prev` pointer of the next node if it exists.
-6. Update the given node's `next` pointer to the new node.
+1. Check if the previous node is `NULL`. If yes, return an error.
+2. Create a new node.
+3. Set `newNode->next = prevNode->next`.
+4. Set `newNode->prev = prevNode`.
+5. Update `prevNode->next->prev` if it exists.
+6. Set `prevNode->next = newNode`.
 
-#### Deletion of a Node
+**Deletion of a Node:**
 
-1. Check if the node to delete is `NULL`. If yes, return.
-2. If the node is the head, update the head pointer.
-3. Update the `prev` pointer of the next node if it exists.
-4. Update the `next` pointer of the previous node if it exists.
-5. Free the memory allocated to the node.
+1. Check if the node to delete or head is `NULL`. If yes, return.
+2. If node to delete is head, update `head = delNode->next`.
+3. Update `delNode->next->prev` and `delNode->prev->next` if they exist.
+4. Free memory of the node.
+
+**Traversal:**
+
+* Start from head.
+* Print `data` of each node while moving to `next` until the end of the list.
 
 ---
 
 ### Sample Output
 
-![linked list](images/prog4_1.png)
+![Linked List](images\prog4_1.png)
 
 ---
 
 ### Result
 
-The program successfully implements a **doubly linked list** with insertion and deletion operations using `typedef` structure. Forward traversal demonstrates the list state after each operation.
+The program successfully implements a doubly linked list and demonstrates insertion and deletion operations while maintaining correct links between nodes.
 
 ---
 
 ### Conclusion
 
-This program demonstrates the **flexibility of doubly linked lists**:
+Doubly linked lists provide **flexible and efficient manipulation** of dynamic data, allowing insertion and deletion at any position in O(1) time if the node pointer is known. They are more versatile than singly linked lists due to **bi-directional traversal**.
 
-* Nodes can be inserted or deleted at any position.
-* Traversal in forward direction shows the current state of the list.
-* The structure efficiently maintains previous and next pointers for a
+---
