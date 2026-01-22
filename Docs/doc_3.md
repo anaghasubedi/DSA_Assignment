@@ -1,30 +1,27 @@
-## Reverse Traversal of a Linked List
+# Reverse Traversal of a Singly Linked List in C
 
 ---
 
 ### Aim
 
-To write a program that **traverses a singly linked list in reverse order**
+To write a program that **traverses a singly linked list in reverse order** using **recursion**, without modifying the original list.
 
 ---
 
 ### Theory
 
-A **linked list** is a dynamic data structure consisting of nodes where each node contains:
+A **singly linked list** is a dynamic data structure where each node contains:
 
-* `data` – stores the value of the node
-* `next` – pointer to the next node in the list
+- **Data**: The value stored in the node.
+- **Next Pointer**: Points to the next node in the list.
 
-Reverse traversal involves visiting the nodes **from the last to the first**. Using **recursion** is an effective way to perform reverse traversal because the **function calls themselves maintain the order**:
+In a **reverse traversal**, the elements are displayed from the **tail to the head**.  
 
-1. Recursively move to the next node until the end of the list.
-2. Print the node's value **during the return phase** of the recursion.
-
-This approach ensures the **original linked list remains unchanged**.
+Using **recursion**, the program can traverse to the end of the list first and then print nodes while backtracking, **without altering the original list**.
 
 ---
 
-### Data Structure Definition
+### Data Structure / Node Definition
 
 ```c
 typedef struct Node {
@@ -33,67 +30,62 @@ typedef struct Node {
 } Node;
 ````
 
-**Description:**
-
-* `Node` : Represents a single element of the linked list
-* `data` : Stores the integer value of the node
-* `next` : Pointer to the next node in the list
-* `typedef` : Simplifies usage of the node structure in the program
+* `data`: Stores the value of the node.
+* `next`: Pointer to the next node in the list.
 
 ---
 
-### Description of Functions
+### Definition of Program
 
-* `createNode(int value)` : Creates a new node with the given value and returns a pointer to it.
-* `insertEnd(Node** head, int value)` : Inserts a node at the end of the linked list.
-* `reverseTraversal(Node* head)` : Recursively traverses the list in reverse order and prints each node's data.
-* `display(Node* head)` : Displays the linked list in normal order (optional for visualization).
+The program performs the following operations:
+
+1. Creates a singly linked list dynamically using `insertEnd`.
+2. Displays the original list using `display`.
+3. Performs **reverse traversal** using the recursive function `reverseTraversal`.
+4. Prints the elements in reverse order without modifying the list.
+
+Functions used:
+
+* `createNode(int value)`: Creates a new node with the given value.
+* `insertEnd(Node** head, int value)`: Inserts a node at the end of the list.
+* `reverseTraversal(Node* head)`: Recursively prints the nodes in reverse order.
+* `display(Node* head)`: Prints the nodes from head to tail.
 
 ---
 
 ### Algorithm
 
-#### Reverse Traversal
+**Reverse Traversal Using Recursion:**
 
-1. Start at the **head** of the linked list.
-2. Recursively call `reverseTraversal()` on the next node.
-3. When the recursion reaches the **last node**, print its data.
-4. Continue returning from recursive calls, printing each node's data.
-5. The output shows the linked list **from last to first**.
+1. If the current node is `NULL`, return.
+2. Recursively call `reverseTraversal` on `node->next`.
+3. After returning from recursion, print `node->data`.
 
----
+**Insertion at End:**
 
-### Description of `main()` Function
+1. If the list is empty, make the new node the head.
+2. Otherwise, traverse to the end of the list and link the new node.
 
-The `main()` function:
+**Display:**
 
-1. Initializes an empty linked list.
-2. Inserts elements into the list using `insertEnd()`.
-3. Displays the original list using `display()`.
-4. Performs **reverse traversal** using `reverseTraversal()`.
-5. Prints the elements of the linked list in **reverse order**.
+* Traverse from head to tail, printing each node.
 
 ---
 
 ### Sample Output
 
-![Traversal](images/prog3_1.png)
+![Reverse Traversal](images\prog3_1.png)
 
 ---
 
 ### Result
 
-The program successfully traverses a singly linked list in **reverse order** using **recursion**, without altering the original list structure.
+The program successfully traverses a singly linked list in reverse order using recursion and prints the elements **without modifying the list**.
 
 ---
 
 ### Conclusion
 
-This program demonstrates the **power of recursion** for linked list operations. By using recursion:
+Recursion provides a simple and elegant way to perform **reverse traversal** of a singly linked list. Unlike reversing the list itself, recursion allows accessing elements from tail to head **without altering the original structure**.
 
-* Nodes can be visited **from end to start** efficiently.
-* The **original linked list remains intact**.
-* The approach is **simple and elegant** for singly linked lists.
-
-```
-
+---
