@@ -1,76 +1,87 @@
-
-## Checking Balanced Parentheses Using Stack
+# Balanced Parentheses Check in C
 
 ---
 
 ### Aim
 
-To write a program that checks whether a given mathematical expression contains a **balanced number of parentheses** using the **stack data structure**.
+To write a program in C to **check whether an expression has balanced parentheses** using a stack.
 
 ---
 
 ### Theory
 
-A **stack** is a linear data structure that follows the **Last In First Out (LIFO)** principle.
-Balanced parentheses mean:
+Balanced parentheses mean every **opening bracket** has a corresponding **closing bracket** in the correct order.  
 
-* Every opening bracket has a corresponding closing bracket.
-* Brackets are closed in the correct order.
+Types of brackets:
 
-Stacks are well suited for this problem because the most recent opening bracket must be closed first.
+- `()` : Round brackets  
+- `{}` : Curly braces  
+- `[]` : Square brackets  
+
+**Stack Data Structure** is ideal for this problem because it follows **LIFO (Last In, First Out)**:
+
+- Push opening brackets onto the stack.
+- Pop from the stack when a closing bracket is encountered.
+- The expression is balanced if the stack is empty after processing all characters.
 
 ---
 
-### Data Structure Definition
+### Data Structure / Stack Definition
 
 ```c
+#define MAX 100
+
 typedef struct {
     char data[MAX];
     int top;
 } Stack;
-```
+````
 
-**Description:**
-
-* `data[MAX]` : Array used to store opening brackets.
-* `top` : Indicates the index of the topmost element.
-* `typedef` : is used to simplify stack usage throughout the program.
+* `data[]`: Array to store stack elements.
+* `top`: Index of the top element in the stack.
 
 ---
 
-### Description of Functions
+### Definition of Program
 
-* `initStack()` : Initializes the stack by setting `top = -1`
-* `push()` : Inserts an opening bracket into the stack
-* `pop()` : Removes and returns the top element from the stack
-* `isMatching()` : Checks whether opening and closing brackets match
-* `isBalanced()` : Determines whether the expression is balanced
+The program performs the following operations:
 
----
+1. Reads an expression from the user.
+2. Iterates through each character:
 
-### Algorithm 
+   * Pushes **opening brackets** onto the stack.
+   * Pops the stack when encountering **closing brackets** and checks for matching.
+3. After processing all characters, checks if the stack is empty:
 
-1. Initialize the stack.
-2. Scan the expression character by character.
-3. Push opening brackets onto the stack.
-4. On encountering a closing bracket:
+   * If yes → Expression is balanced.
+   * If no → Expression is unbalanced.
 
-   * Pop from stack
-   * Check for correct matching.
-5. After scanning:
+Functions used:
 
-   * Empty stack → Balanced
-   * Non-empty stack → Unbalanced
+* `initStack(Stack *s)`: Initializes the stack.
+* `push(Stack *s, char ch)`: Pushes a character onto the stack.
+* `pop(Stack *s)`: Pops a character from the stack.
+* `isMatching(char open, char close)`: Checks if a pair of brackets match.
+* `isBalanced(char exp[])`: Returns 1 if balanced, 0 if unbalanced.
 
 ---
 
-### Description of `main()` Function
+### Algorithm
 
-The `main()` function:
+1. Initialize an empty stack.
+2. For each character in the expression:
 
-1. Accepts a mathematical expression as input.
-2. Calls `isBalanced()` to verify parentheses.
-3. Displays whether the expression is **balanced or unbalanced**.
+   * If it is an opening bracket, push it onto the stack.
+   * If it is a closing bracket:
+
+     * If the stack is empty → Not balanced.
+     * Pop from the stack and check if it matches the closing bracket.
+
+       * If not matching → Not balanced.
+3. After processing all characters:
+
+   * If stack is empty → Balanced.
+   * Else → Unbalanced.
 
 ---
 
@@ -89,12 +100,12 @@ The `main()` function:
 
 ### Result
 
-The program successfully checks whether a given mathematical expression has balanced parentheses using a stack.
+The program successfully checks whether a given expression has **balanced parentheses** using a stack.
 
 ---
 
 ### Conclusion
 
-This program demonstrates the practical application of the **stack data structure** for solving real-world problems. The program effectively uses structures, typedef, and stack operations to ensure correctness and clarity.
+Using a stack provides an efficient and reliable way to check **balanced parentheses**. This method ensures correct pairing and nesting for multiple types of brackets in an expression.
 
 ---
