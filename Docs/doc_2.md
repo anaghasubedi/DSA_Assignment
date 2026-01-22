@@ -1,40 +1,47 @@
-## Infix to Postfix Conversion and Evaluation Using Stack
+# Infix to Postfix Conversion and Evaluation in C
 
 ---
 
 ### Aim
 
-To write a program that **converts an infix mathematical expression into postfix form** and **evaluates the postfix expression** using the **stack data structure**, supporting all basic arithmetic operations.
+To write a program in C to **convert an infix mathematical expression to postfix notation** and **evaluate the postfix expression** using stack data structures.
 
 ---
 
 ### Theory
 
-An **infix expression** represents operators placed **between operands** (e.g., `A + B`).
+**Infix Expression:** Operators are written **between operands** (e.g., `A + B`).  
+**Postfix Expression (Reverse Polish Notation):** Operators are written **after operands** (e.g., `AB+`).  
 
-A **postfix expression** (Reverse Polish Notation) places operators **after operands** (e.g., `AB+`).
+**Conversion Algorithm (Infix → Postfix):**
 
-Stacks follow the **Last In First Out (LIFO)** principle, making them ideal for:
+- Uses a **stack** to temporarily hold operators.
+- **Operands** are added directly to the postfix expression.
+- **Operators** are pushed to the stack according to their **precedence**.
+- **Parentheses** are used to control operator precedence.
 
-* Handling **operator precedence**
-* Managing **parentheses**
-* Evaluating postfix expressions efficiently
+**Evaluation of Postfix Expression:**
 
-The **operator precedence order** is:
+- Uses a **stack of integers**.
+- **Operands** are pushed to the stack.
+- **Operators** pop two operands, apply the operation, and push the result back.
+- The final value on the stack is the evaluated result.
 
-```
-^   (Highest, Right-Associative)
-* / (Medium, Left-Associative)
-+ - (Lowest, Left-Associative)
-```
+**Operator Precedence:**
 
-Parentheses `()` **always override precedence**, ensuring operations inside them are performed first.
+| Operator | Precedence |
+|----------|------------|
+| ^        | 3          |
+| * /      | 2          |
+| + -      | 1          |
 
 ---
 
-### Data Structure Definition
+### Data Structure / Stack Definition
 
 ```c
+#define MAX 50
+
 typedef struct {
     char data[MAX];
     int top;
@@ -44,71 +51,55 @@ typedef struct {
     int data[MAX];
     int top;
 } IntStack;
-```
+````
 
-**Description:**
-
-* `CharStack` : Stores operators and parentheses during infix to postfix conversion
-* `IntStack` : Stores operands during postfix evaluation
-* `data[MAX]` : Array representing stack elements
-* `top` : Index of the topmost element
-* `typedef` : Simplifies stack usage in the program
+* `CharStack` stores operators for conversion.
+* `IntStack` stores integer operands for evaluation.
+* `top` indicates the current top of the stack.
 
 ---
 
-### Description of Functions
+### Definition of Program
 
-* `initCharStack()` : Initializes the operator stack
-* `initIntStack()` : Initializes the operand stack
-* `pushChar()` / `popChar()` / `peekChar()` : Basic operations on the operator stack
-* `pushInt()` / `popInt()` : Basic operations on the operand stack
-* `precedence()` : Returns precedence of a given operator
-* `power()` : Computes integer exponentiation
-* `infixToPostfix()` : Converts infix expression to postfix using stack rules and operator precedence
-* `evaluatePostfix()` : Evaluates the postfix expression using an operand stack
+The program performs the following operations:
+
+1. Reads an **infix expression** from the user.
+2. Converts it to **postfix notation** using `infixToPostfix`.
+3. Evaluates the **postfix expression** using `evaluatePostfix`.
+4. Displays the **postfix expression** and its **evaluated result**.
+
+Functions used:
+
+* `initCharStack` / `initIntStack`: Initialize stacks.
+* `pushChar` / `popChar` / `peekChar`: Stack operations for characters.
+* `pushInt` / `popInt`: Stack operations for integers.
+* `precedence(char op)`: Returns precedence of an operator.
+* `infixToPostfix(char infix[], char postfix[])`: Converts infix to postfix using a stack.
+* `evaluatePostfix(char postfix[])`: Evaluates the postfix expression using a stack.
 
 ---
 
 ### Algorithm
 
-#### Infix to Postfix Conversion
+**Infix to Postfix Conversion:**
 
-1. Initialize the operator stack.
-2. Scan the infix expression from left to right.
-3. If the symbol is an operand, append it to postfix.
-4. If the symbol is `(`, push it onto the stack.
-5. If the symbol is `)`, pop all operators until `(` is encountered.
-6. If the symbol is an operator:
+1. Initialize an empty stack.
+2. Read the infix expression character by character:
 
-   * Pop operators from the stack with **higher precedence**
-   * Pop operators with **equal precedence if the current operator is left-associative**
-   * Push the current operator onto the stack.
-7. After scanning, pop any remaining operators to postfix.
+   * If operand: add to postfix.
+   * If '(': push to stack.
+   * If ')': pop from stack until '('.
+   * If operator: pop operators from stack with higher or equal precedence and push the current operator.
+3. Pop remaining operators from the stack and append to postfix.
 
----
+**Postfix Evaluation:**
 
-#### Postfix Evaluation
+1. Initialize an empty integer stack.
+2. Read the postfix expression:
 
-1. Initialize the operand stack.
-2. Scan the postfix expression from left to right.
-3. If the symbol is an operand, push it onto the stack.
-4. If the symbol is an operator:
-
-   * Pop two operands from the stack
-   * Apply the operator (`+ - * / ^`)
-   * Push the result back onto the stack
-5. The final stack value is the evaluated result.
-
----
-
-### Description of `main()` Function
-
-The `main()` function:
-
-1. Accepts a **mathematical infix expression** from the user.
-2. Converts the infix expression into **postfix** form using `infixToPostfix()`.
-3. Evaluates the postfix expression using `evaluatePostfix()`.
-4. Displays the **postfix expression** and the **evaluated result**.
+   * If operand: push to stack.
+   * If operator: pop two operands, apply operation, push result.
+3. The final value in the stack is the result.
 
 ---
 
@@ -124,18 +115,15 @@ The `main()` function:
 
 ### Result
 
-The program successfully converts any valid **infix expression** into postfix form and evaluates it correctly, even for **exponentiation** and **complex parentheses** expressions, using stack operations.
+The program successfully converts any valid infix expression to postfix notation and evaluates the result using stacks.
 
 ---
 
 ### Conclusion
 
-This program demonstrates the **power of stacks** for expression processing. By combining:
+Stack data structures are ideal for **operator management** in expression conversion and **operand management** in postfix evaluation. This program demonstrates:
 
-* **operator stack** for precedence handling,
-* **operand stack** for evaluation, and
-* **right-associative handling for `^`**,
-
-the program ensures **accurate expression evaluation**. The implementation is robust and can handle **large integer results safely** using `int`.
+* Correctly respecting **operator precedence and associativity**.
+* Efficient evaluation of arithmetic expressions using **LIFO** stack behavior.
 
 ---
